@@ -1,0 +1,20 @@
+{
+	"name": "silverstripe/pdfcrowd",
+	"type": "silverstripe-module",
+	"description": "Implements the PDF Crowd API for creating PDFs. This really is a very good system for creating PDFs",
+	"homepage": "http://www.silverstripe-webdevelopment.com",
+	"keywords": ["pdfcrowd", "silverstripe"],
+	"license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
+	"authors":[
+		{
+			"name": "Nicolaas Francken",
+			"homepage": "https://github.com/sunnysideup",
+			"email" : "modules@sunnysideup.co.nz",
+			"role" : "lead developer"
+		}
+	],
+	"require":{
+		"php": ">=5.3.2",
+		"silverstripe/framework": "3.0.*"
+	}
+}
