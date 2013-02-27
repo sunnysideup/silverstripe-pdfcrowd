@@ -1,5 +1,5 @@
 {
-	"name": "silverstripe/pdfcrowd",
+	"name": "sunnysideup/pdfcrowd",
 	"type": "silverstripe-module",
 	"description": "Implements the PDF Crowd API for creating PDFs. This really is a very good system for creating PDFs",
 	"homepage": "http://www.silverstripe-webdevelopment.com",
