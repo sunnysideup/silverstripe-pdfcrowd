@@ -19,7 +19,7 @@ class PDFCrowdConverter extends Object {
 	protected static $save_pdfs_here = 'pdfs'; //e.g. assets/pdfs
 		public static function set_save_pdfs_here($s) {self::$save_pdfs_here = $s;}
 		public static function get_save_pdfs_here() {return self::$save_pdfs_here;}
-		
+
 	public $pdf = null;
 
 	/**
@@ -45,7 +45,7 @@ class PDFCrowdConverter extends Object {
 
 	//CACHING DOES NOT WORK!
 	public function ConvertURL($url, $filename, $useCacheIfAvailable = false) {
-		
+
 		$folderFilename = '';
 		if(isset($_GET["flush"])) {
 			$useCacheIfAvailable = false;
@@ -58,7 +58,7 @@ class PDFCrowdConverter extends Object {
 				exit();
 			}
 		}
-		try {   
+		try {
 			$pdf = $this->pdf->convertURI($url);
 		}
 		catch(PdfcrowdException $e) {
@@ -78,7 +78,7 @@ class PDFCrowdConverter extends Object {
 
 	public function removeCachedPDF($filename) {
 		if($folderFilename = $this->file2FolderFilename($filename)) {
-			if(file_exists($folderFilename)) {				
+			if(file_exists($folderFilename)) {
 				unlink($folderFilename);
 			}
 		}
@@ -105,7 +105,7 @@ class PDFCrowdConverter extends Object {
 		header("Cache-Control: no-cache");
 		header("Accept-Ranges: none");
 		header("Content-Disposition: attachment; filename=\"$filename\"");
-		// send the generated PDF 
+		// send the generated PDF
 		echo $pdfAsString;
 	}
 
