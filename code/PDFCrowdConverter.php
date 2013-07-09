@@ -3,7 +3,7 @@
 
 class PDFCrowdConverter extends Object {
 
-	protected static $third_party_file = "pdfcrowd/thirdparty/github/pdfcrowd.php";
+	protected static $third_party_file = "pdfcrowd/thirdparty/pdfcrowd.php";
 		public static function set_third_party_file($s) {self::$third_party_file = $s;}
 
 	protected static $username = "";
