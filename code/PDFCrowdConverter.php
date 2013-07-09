@@ -87,7 +87,7 @@ class PDFCrowdConverter extends Object {
 	protected function file2FolderFilename($filename, $withoutBase = false) {
 		if(self::$save_pdfs_here) {
 			$folder = Director::baseFolder()."/".self::$save_pdfs_here."/";
-			$folderObject = Folder::findOrMake($folder);
+			$folderObject = Folder::find_or_make($folder);
 			if($withoutBase) {
 				$folderFilename = $folderObject->getRelativePath() . $filename;
 			}
