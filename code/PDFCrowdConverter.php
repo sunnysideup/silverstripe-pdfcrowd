@@ -3,20 +3,20 @@
 
 class PDFCrowdConverter extends Object {
 
-	protected static $third_party_file = "pdfcrowd/thirdparty/pdfcrowd.php";
+	private static $third_party_file = "pdfcrowd/thirdparty/pdfcrowd.php";
 		public static function set_third_party_file($s) {self::$third_party_file = $s;}
 
-	protected static $username = "";
+	private static $username = "";
 		public static function set_username($s) {self::$username = $s;}
 		public static function get_username() {return self::$username;}
 
-	protected static $api_key = "";
+	private static $api_key = "";
 		public static function set_api_key($s) {self::$api_key = $s;}
 		public static function get_api_key() {return self::$api_key;}
 
-	protected static $singleton = null;
+	private static $singleton = null;
 
-	protected static $save_pdfs_here = 'pdfs'; //e.g. assets/pdfs
+	private static $save_pdfs_here = 'pdfs'; //e.g. assets/pdfs
 		public static function set_save_pdfs_here($s) {self::$save_pdfs_here = $s;}
 		public static function get_save_pdfs_here() {return self::$save_pdfs_here;}
 

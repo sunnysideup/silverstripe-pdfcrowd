@@ -376,10 +376,10 @@ Possible reasons:
 
     private $fields, $scheme, $port, $api_prefix;
 
-    public static $client_version = "2.6";
-    public static $http_port = 80;
-    public static $https_port = 443;
-    public static $api_host = 'pdfcrowd.com';
+    private static $client_version = "2.6";
+    private static $http_port = 80;
+    private static $https_port = 443;
+    private static $api_host = 'pdfcrowd.com';
 
     private static $missing_curl = 'pdfcrowd.php requires cURL which is not installed on your system.
 
