@@ -1,0 +1,13 @@
+#########################################
+# START PDFCROWD
+#########################################
+
+PDFCrowdConverter:
+  username: 'myusername'
+  api_key: 'myapikey'
+  save_pdfs_here: 'specsheets'
+  #third_party_file: 'mysite/thirdparty/myfile.php'
+
+#########################################
+# END PDFCROWD
+#########################################
