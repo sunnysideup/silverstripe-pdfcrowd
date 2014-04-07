@@ -1,6 +1,4 @@
-###############################################
-PDF Crowd Converter
-###############################################
+PDF Crowd Converter================================================================================
 
 Turns any HMTL into PDFs using the (amazing) PDF Crowd service.
 
