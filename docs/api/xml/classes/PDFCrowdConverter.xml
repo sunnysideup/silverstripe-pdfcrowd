@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="PDFCrowdConverter" namespace="" name="PDFCrowdConverter" abstract="false" final="false" start="4" end="105">
+  <file path="/var/www/_modules/pdfcrowd/trunk/docs/en/phpdox/../../../code" file="PDFCrowdConverter.php" realpath="/var/www/_modules/pdfcrowd/trunk/code/PDFCrowdConverter.php" size="2715" time="2015-03-14T10:23:52+13:00" unixtime="1426281832" sha1="979bea8546ce163ba4b02c3776db473e061c81af" relative="code/PDFCrowdConverter.php"/>
+  <extends full="Object" namespace="" name="Object"/>
+  <member name="third_party_file" type="string" default="&quot;pdfcrowd/thirdparty/pdfcrowd.php&quot;" visibility="private" line="6"/>
+  <member name="username" type="string" default="&quot;&quot;" visibility="private" line="8"/>
+  <member name="api_key" type="string" default="&quot;&quot;" visibility="private" line="10"/>
+  <member name="singleton" type="{unknown}" default="null" visibility="private" line="12"/>
+  <member name="save_pdfs_here" type="string" default="'pdfs'" visibility="private" line="14"/>
+  <member name="pdf" type="{unknown}" default="null" visibility="public" line="16"/>
+  <method name="singleton" start="22" end="27" abstract="false" final="false" static="true" visibility="public">
+    <docblock>
+      <description compact="Allows access to the cart from anywhere in code.">return ShoppingCart Object</description>
+    </docblock>
+  </method>
+  <constructor name="__construct" start="29" end="33" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="ConvertPage" start="35" end="37" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="page" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="ConvertURL" start="40" end="70" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="filename" byreference="false" type="{unknown}"/>
+    <parameter name="useCacheIfAvailable" byreference="false" type="{unknown}" default="false"/>
+  </method>
+  <method name="removeCachedPDF" start="72" end="78" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="filename" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="file2FolderFilename" start="80" end="92" abstract="false" final="false" static="false" visibility="protected">
+    <parameter name="filename" byreference="false" type="{unknown}"/>
+    <parameter name="withoutBase" byreference="false" type="{unknown}" default="false"/>
+  </method>
+  <method name="outputPDF" start="95" end="103" abstract="false" final="false" static="true" visibility="public">
+    <parameter name="pdfAsString" byreference="false" type="{unknown}"/>
+    <parameter name="filename" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="set HTTP response headers" line="96"/>
+      <comment value="send the generated PDF" line="101"/>
+    </inline>
+  </method>
+</class>

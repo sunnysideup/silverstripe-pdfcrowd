@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/var/www/_modules/pdfcrowd/trunk">
+  <namespace name="">
+    <class name="PDFCrowdConverter" src="code/PDFCrowdConverter.php" xml="classes/PDFCrowdConverter.xml"/>
+    <class name="PdfcrowdException" src="thirdparty/pdfcrowd.php" xml="classes/PdfcrowdException.xml"/>
+    <class name="PdfCrowd" src="thirdparty/pdfcrowd.php" xml="classes/PdfCrowd.xml"/>
+    <class name="Exception" xml="classes/Exception.xml"/>
+  </namespace>
+</index>
