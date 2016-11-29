@@ -3,8 +3,10 @@
     "type": "silverstripe-module",
     "description": "Implements the PDF Crowd API for creating PDFs. This really is a very good system for creating PDFs",
     "keywords": [
-        "pdfcrowd",
-        "silverstripe"
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
+        "pdfcrowd"
     ],
     "license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
     "authors": [

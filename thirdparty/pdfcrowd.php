@@ -31,9 +31,11 @@
 //
 // Thrown when an error occurs.
 //
-class PdfcrowdException extends Exception {
+class PdfcrowdException extends Exception
+{
     // custom string representation of object
-    public function __toString() {
+    public function __toString()
+    {
         if ($this->code) {
             return "[{$this->code}] {$this->message}\n";
         } else {
@@ -46,7 +48,8 @@ class PdfcrowdException extends Exception {
 //
 // Pdfcrowd API client.
 //
-class PdfCrowd {
+class PdfCrowd
+{
     //
     // Pdfcrowd constructor.
     //
@@ -54,11 +57,13 @@ class PdfCrowd {
     // $apikey  - your API key
     // $hostname - API hostname, defaults to pdfcrowd.com
     //
-    function __construct($username, $apikey, $hostname=null){
-        if ($hostname)
+    public function __construct($username, $apikey, $hostname=null)
+    {
+        if ($hostname) {
             $this->hostname = $hostname;
-        else
+        } else {
             $this->hostname = self::$api_host;
+        }
         $this->useSSL(false);
         $this->fields = array(
             'username' => $username,
@@ -80,7 +85,8 @@ class PdfCrowd {
     // $outstream - output stream, if null then the return value is a string
     //              containing the PDF
     //
-    function convertHtml($src, $outstream=null){
+    public function convertHtml($src, $outstream=null)
+    {
         if (!$src) {
             throw new PdfcrowdException("convertHTML(): the src parameter must not be empty");
         }
@@ -98,7 +104,8 @@ class PdfCrowd {
     // $outstream - output stream, if null then the return value is a string
     //              containing the PDF
     //
-    function convertFile($src, $outstream=null) {
+    public function convertFile($src, $outstream=null)
+    {
         $src = trim($src);
 
         if (!file_exists($src)) {
@@ -137,7 +144,8 @@ Possible reasons:
     // $outstream - output stream, if null then the return value is a string
     //              containing the PDF
     //
-    function convertURI($src, $outstream=null){
+    public function convertURI($src, $outstream=null)
+    {
         $src = trim($src);
         if (!preg_match("/^https?:\/\/.*/i", $src)) {
             throw new PdfcrowdException("convertURI(): the URL must start with http:// or https:// (got '$src')");
@@ -152,22 +160,23 @@ Possible reasons:
     //
     // Returns the number of available conversion tokens.
     //
-    function numTokens() {
+    public function numTokens()
+    {
         $username = $this->fields['username'];
         $uri = $this->api_prefix . "/user/{$username}/tokens/";
         $arr = array('username' => $this->fields['username'],
                      'key' => $this->fields['key']);
         $postfields = http_build_query($arr, '', '&');
-        $ntokens = $this->http_post($uri, $postfields, NULL);
+        $ntokens = $this->http_post($uri, $postfields, null);
         return (int)$ntokens;
     }
 
-    function useSSL($use_ssl) {
-        if($use_ssl) {
+    public function useSSL($use_ssl)
+    {
+        if ($use_ssl) {
             $this->port = self::$https_port;
             $this->scheme = 'https';
-        }
-        else {
+        } else {
             $this->port = self::$http_port;
             $this->scheme = 'http';
         }
@@ -175,50 +184,61 @@ Possible reasons:
         $this->api_prefix = "{$this->scheme}://{$this->hostname}/api";
     }
 
-    function setPageWidth($value) {
+    public function setPageWidth($value)
+    {
         $this->fields['width'] = $value;
     }
 
-    function setPageHeight($value) {
+    public function setPageHeight($value)
+    {
         $this->fields['height'] = $value;
     }
 
-    function setHorizontalMargin($value) {
+    public function setHorizontalMargin($value)
+    {
         $this->fields['margin_right'] = $this->fields['margin_left'] = $value;
     }
 
-    function setVerticalMargin($value) {
+    public function setVerticalMargin($value)
+    {
         $this->fields['margin_top'] = $this->fields['margin_bottom'] = $value;
     }
 
-    function setPageMargins($top, $right, $bottom, $left) {
-      $this->fields['margin_top'] = $top;
-      $this->fields['margin_right'] = $right;
-      $this->fields['margin_bottom'] = $bottom;
-      $this->fields['margin_left'] = $left;
+    public function setPageMargins($top, $right, $bottom, $left)
+    {
+        $this->fields['margin_top'] = $top;
+        $this->fields['margin_right'] = $right;
+        $this->fields['margin_bottom'] = $bottom;
+        $this->fields['margin_left'] = $left;
     }
 
-    function setEncrypted($val=True) {
+    public function setEncrypted($val=true)
+    {
         $this->set_or_unset($val, 'encrypted');
     }
 
-    function setUserPassword($pwd) {
+    public function setUserPassword($pwd)
+    {
         $this->set_or_unset($pwd, 'user_pwd');
     }
 
-    function setOwnerPassword($pwd) {
+    public function setOwnerPassword($pwd)
+    {
         $this->set_or_unset($pwd, 'owner_pwd');
     }
 
-    function setNoPrint($val=True) {
+    public function setNoPrint($val=true)
+    {
         $this->set_or_unset($val, 'no_print');
     }
 
-    function setNoModify($val=True) {
+    public function setNoModify($val=true)
+    {
         $this->set_or_unset($val, 'no_modify');
     }
 
-    function setNoCopy($val=True) {
+    public function setNoCopy($val=true)
+    {
         $this->set_or_unset($val, 'no_copy');
     }
 
@@ -227,7 +247,8 @@ Possible reasons:
     const CONTINUOUS = 2;
     const CONTINUOUS_FACING = 3;
 
-    function setPageLayout($value) {
+    public function setPageLayout($value)
+    {
         assert($value > 0 && $value <= 3);
         $this->fields['page_layout'] = $value;
     }
@@ -237,48 +258,59 @@ Possible reasons:
     const THUMBNAILS_VISIBLE = 2;
     const FULLSCREEN = 3;
 
-    function setPageMode($value) {
+    public function setPageMode($value)
+    {
         assert($value > 0 && $value <= 3);
         $this->fields['page_mode'] = $value;
     }
 
-    function setFooterText($value) {
+    public function setFooterText($value)
+    {
         $this->set_or_unset($value, 'footer_text');
     }
 
-    function enableImages($value=True) {
+    public function enableImages($value=true)
+    {
         $this->set_or_unset(!$value, 'no_images');
     }
 
-    function enableBackgrounds($value=True) {
+    public function enableBackgrounds($value=true)
+    {
         $this->set_or_unset(!$value, 'no_backgrounds');
     }
 
-    function setHtmlZoom($value) {
+    public function setHtmlZoom($value)
+    {
         $this->set_or_unset($value, 'html_zoom');
     }
 
-    function enableJavaScript($value=True) {
+    public function enableJavaScript($value=true)
+    {
         $this->set_or_unset(!$value, 'no_javascript');
     }
 
-    function enableHyperlinks($value=True) {
+    public function enableHyperlinks($value=true)
+    {
         $this->set_or_unset(!$value, 'no_hyperlinks');
     }
 
-    function setDefaultTextEncoding($value) {
+    public function setDefaultTextEncoding($value)
+    {
         $this->set_or_unset($value, 'text_encoding');
     }
 
-    function usePrintMedia($value=True) {
+    public function usePrintMedia($value=true)
+    {
         $this->set_or_unset($value, 'use_print_media');
     }
 
-    function setMaxPages($value) {
+    public function setMaxPages($value)
+    {
         $this->fields['max_pages'] = $value;
     }
 
-    function enablePdfcrowdLogo($value=True) {
+    public function enablePdfcrowdLogo($value=true)
+    {
         $this->set_or_unset($value, 'pdfcrowd_logo');
     }
 
@@ -287,82 +319,100 @@ Possible reasons:
     const FIT_HEIGHT = 2;
     const FIT_PAGE = 3;
 
-    function setInitialPdfZoomType($value) {
+    public function setInitialPdfZoomType($value)
+    {
         assert($value>0 && $value<=3);
         $this->fields['initial_pdf_zoom_type'] = $value;
     }
 
-    function setInitialPdfExactZoom($value) {
+    public function setInitialPdfExactZoom($value)
+    {
         $this->fields['initial_pdf_zoom_type'] = 4;
         $this->fields['initial_pdf_zoom'] = $value;
     }
 
-    function setPdfScalingFactor($value) {
+    public function setPdfScalingFactor($value)
+    {
         $this->fields['pdf_scaling_factor'] = $value;
     }
 
-    function setAuthor($value) {
+    public function setAuthor($value)
+    {
         $this->fields['author'] = $value;
     }
 
-    function setFailOnNon200($value) {
+    public function setFailOnNon200($value)
+    {
         $this->fields['fail_on_non200'] = $value;
     }
 
-    function setFooterHtml($value) {
+    public function setFooterHtml($value)
+    {
         $this->fields['footer_html'] = $value;
     }
 
-    function setFooterUrl($value) {
+    public function setFooterUrl($value)
+    {
         $this->fields['footer_url'] = $value;
     }
 
-    function setHeaderHtml($value) {
+    public function setHeaderHtml($value)
+    {
         $this->fields['header_html'] = $value;
     }
 
-    function setHeaderUrl($value) {
+    public function setHeaderUrl($value)
+    {
         $this->fields['header_url'] = $value;
     }
 
-    function setPageBackgroundColor($value) {
+    public function setPageBackgroundColor($value)
+    {
         $this->fields['page_background_color'] = $value;
     }
 
-    function setTransparentBackground($value=True) {
+    public function setTransparentBackground($value=true)
+    {
         $this->set_or_unset($value, 'transparent_background');
     }
 
-    function setPageNumberingOffset($value) {
+    public function setPageNumberingOffset($value)
+    {
         $this->fields['page_numbering_offset'] = $value;
     }
 
-    function setHeaderFooterPageExcludeList($value) {
+    public function setHeaderFooterPageExcludeList($value)
+    {
         $this->fields['header_footer_page_exclude_list'] = $value;
     }
 
-    function setWatermark($url, $offset_x=0, $offset_y=0) {
+    public function setWatermark($url, $offset_x=0, $offset_y=0)
+    {
         $this->fields["watermark_url"] = $url;
         $this->fields["watermark_offset_x"] = $offset_x;
         $this->fields["watermark_offset_y"] = $offset_y;
     }
 
-    function setWatermarkRotation($angle) {
+    public function setWatermarkRotation($angle)
+    {
         $this->fields["watermark_rotation"] = $angle;
     }
 
-    function setWatermarkInBackground($val=True) {
+    public function setWatermarkInBackground($val=true)
+    {
         $this->set_or_unset($val, "watermark_in_background");
     }
 
-    function setProxy($proxyname, $port, $username="", $password="") {
+    public function setProxy($proxyname, $port, $username="", $password="")
+    {
         $this->proxy_name = $proxyname;
         $this->proxy_port = $port;
         $this->proxy_username = $username;
         $this->proxy_password = $password;
     }
 
-    function setUserAgent($user_agent) {
+    public function setUserAgent($user_agent)
+    {
         $this->user_agent = $user_agent;
     }
 
@@ -395,13 +445,14 @@ Links:
  PHP/cURL documentation:           <http://cz.php.net/manual/en/book.curl.php>';
 
 
-    private function http_post($url, $postfields, $outstream) {
+    private function http_post($url, $postfields, $outstream)
+    {
         if (!function_exists("curl_init")) {
             throw new PdfcrowdException(self::$missing_curl);
         }
 
         $c = curl_init();
-        curl_setopt($c, CURLOPT_URL,$url);
+        curl_setopt($c, CURLOPT_URL, $url);
         curl_setopt($c, CURLOPT_HEADER, false);
         curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -440,9 +491,8 @@ Links:
 
         if ($error_nr != 0) {
             throw new PdfcrowdException($error_str, $error_nr);
-        }
-        else if ($this->http_code == 200) {
-            if ($outstream == NULL) {
+        } elseif ($this->http_code == 200) {
+            if ($outstream == null) {
                 return $response;
             }
         } else {
@@ -450,7 +500,8 @@ Links:
         }
     }
 
-    private function receive_to_stream($curl, $data) {
+    private function receive_to_stream($curl, $data)
+    {
         if ($this->http_code == 0) {
             $this->http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         }
@@ -472,13 +523,12 @@ Please disable it either in your php.ini file, or in your code by calling 'set_m
         return $written;
     }
 
-    private function set_or_unset($val, $field) {
-        if ($val)
+    private function set_or_unset($val, $field)
+    {
+        if ($val) {
             $this->fields[$field] = $val;
-        else
+        } else {
             unset($this->fields[$field]);
+        }
     }
-
-
 }
-
